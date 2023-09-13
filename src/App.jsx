@@ -1,17 +1,29 @@
+
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Blogs from './Components/Blogs/Blogs'
+import Bookmarks from './Components/Bookmarks/Bookmarks'
+import Header from './Components/Header/Header'
+
 
 function App() {
+
+  const [boorkmarks, setBoorkmarks ] = useState([]);
+
+  const handleAddToBookmark = (blog) => {
+    const newBoorkmarks = [...boorkmarks, blog];
+    setBoorkmarks(newBoorkmarks);
+  }
 
   return (
     <>
       
-      <h1 className='text-5xl font-bold text-center mt-10'>Knowledge Cafe</h1>
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+      <Header></Header>
+      <div className="md:flex gap-4 max-w-7xl mx-auto">
+      <Blogs handleAddToBookmark={handleAddToBookmark} ></Blogs>
+      <Bookmarks bookmarks={boorkmarks}></Bookmarks>
+      </div>
+      
       
     </>
   )
